@@ -13,8 +13,8 @@ typedef struct vect{
 } vect; 
 
 
-extern vect vector_array[10]; 
-
+extern vect *vector_array; 
+extern int capacity; 
 //vector operations
 vect add(vect a, vect b, char name); 
 vect sub(vect a, vect b, char name); 
@@ -28,3 +28,4 @@ void find_vect(char name);
 void clear_array(); 
 void list(); 
 void print_help(void); 
+void init_array();

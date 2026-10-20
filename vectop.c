@@ -9,12 +9,15 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
-#define ARRAY_LENGTH 10
+#include <stdlib.h>
 
-vect vector_array[10] = {};
 static int add_index = 0; 
+int capacity = 10; 
+vect *vector_array;
 
-
+void init_array(){
+    vector_array = malloc(capacity * sizeof(vect)); 
+}
 
 vect add(vect a, vect b, char name){
     vect return_vector; 
@@ -57,7 +60,7 @@ void add_vect(vect vector){
         printf("%c = %.2f %.2f %.2f\n", vector_array[index].name, 
             vector_array[index].x, vector_array[index].y, vector_array[index].z); 
     }
-    else if (add_index < ARRAY_LENGTH) {
+    else if (add_index < capacity) {
         // New vector
         vector_array[add_index] = vector;
         printf("%c = %.2f %.2f %.2f\n", vector_array[add_index].name, 
@@ -65,7 +68,14 @@ void add_vect(vect vector){
         add_index++;
     }
     else {
-        printf("No more room in array\n");
+        capacity += 10; 
+        vect *temp = realloc(vector_array, capacity * sizeof(vect)); 
+        if(temp == NULL){
+            printf("Memory reallocation failed.\n"); 
+            free(vector_array); 
+        }else{
+            vector_array = temp;
+        } 
     }
 
  
@@ -74,7 +84,7 @@ void add_vect(vect vector){
 
 int find_vect_index(char name){ 
     int index = -1; 
-    for(int i = 0; i< ARRAY_LENGTH; i++){
+    for(int i = 0; i< capacity; i++){
         //vector found 
         if(vector_array[i].name == name){
             index = i; 
@@ -86,7 +96,7 @@ int find_vect_index(char name){
 
 void find_vect(char name){
     int index = -1; 
-    for(int i = 0; i< ARRAY_LENGTH; i++){ 
+    for(int i = 0; i< capacity; i++){ 
         //vector found 
         if(vector_array[i].name == name){
             index = i; 
@@ -103,13 +113,14 @@ void find_vect(char name){
 
 }
 void clear_array(){
-    for(int i = 0; i<ARRAY_LENGTH; i++){
+    for(int i = 0; i<capacity; i++){
         vector_array[i].name = '\0'; 
         vector_array[i].x = 0; 
         vector_array[i].y = 0;
         vector_array[i].z = 0;
     }
     add_index = 0; 
+       
 }
 void print_help(void) {
     printf("MiniMat - Vector Calculator\n");
@@ -136,7 +147,7 @@ void print_help(void) {
 }
 
 void list(){
-    for(int i = 0; i<ARRAY_LENGTH; i++){
+    for(int i = 0; i<capacity; i++){
         if(vector_array[i].name != '\0'){
             printf("%c = %.2f %.2f %.2f\n", vector_array[i].name, 
             vector_array[i].x, vector_array[i].y,

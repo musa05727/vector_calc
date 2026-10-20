@@ -11,9 +11,8 @@
 #include "vect.h"
 #include <stdbool.h>
 #include <ctype.h>
-int main(int argc, char* argv[]){
-    
-
+int main(int argc, char* argv[]){ 
+    init_array(); 
 
     char user_input[20]; 
     char *token_one; 
