@@ -1,21 +1,21 @@
 # MiniMat - Vector Calculator
  Supports 3D vectors (maximum 10).
 
- Commands:
-        quit            Exit program
-        clear           Delete all vectors
-        list            Display stored vectors
+ Commands: <br>
+        quit            Exit program <br>
+        clear           Delete all vectors <br>
+        list            Display stored vectors <br>
 
- Operations:
-        a = 1 2 3       Create/update vector
-        a               Display vector
-        a + b           Vector addition
-        a - b           Vector subtraction
-        a * 2           Scalar multiplication
-        2 * a           Scalar multiplication
-        c = a + b       Store operation result
+ Operations: <br> 
+        a = 1 2 3       Create/update vector <br>
+        a               Display vector <br>
+        a + b           Vector addition <br> 
+        a - b           Vector subtraction <br> 
+        a * 2           Scalar multiplication <br> 
+        2 * a           Scalar multiplication <br> 
+        c = a + b       Store operation result <br> 
 
- Notes:
-        Separate components with spaces or commas.
-        Use spaces around operators.
-        Decimal and negative values are supported
+ Notes: <br> 
+        Separate components with spaces or commas. <br> 
+        Use spaces around operators. <br> 
+        Decimal and negative values are supported <br> 
