@@ -21,6 +21,7 @@ int main(int argc, char* argv[]){
     char *token_four; 
     char *token_five; 
 
+
     if(argc > 1){
         if(strcmp(argv[1], "-h") == 0){
             print_help(); 
@@ -39,6 +40,7 @@ int main(int argc, char* argv[]){
             //if user enters quit, the loop breaks
             if(strcmp(user_input, "quit") == 0)
             {
+                free(vector_array); 
                 break; 
             
             }

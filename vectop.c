@@ -13,10 +13,9 @@
 
 static int add_index = 0; 
 int capacity = 10; 
-vect *vector_array;
-
+vect* vector_array; 
 void init_array(){
-    vector_array = malloc(capacity * sizeof(vect)); 
+    vector_array = malloc(capacity * sizeof(vect));  
 }
 
 vect add(vect a, vect b, char name){
@@ -75,7 +74,8 @@ void add_vect(vect vector){
             free(vector_array); 
         }else{
             vector_array = temp;
-        } 
+        }
+        vector_array[add_index] = vector;  
     }
 
  
@@ -84,7 +84,7 @@ void add_vect(vect vector){
 
 int find_vect_index(char name){ 
     int index = -1; 
-    for(int i = 0; i< capacity; i++){
+    for(int i = 0; i< add_index; i++){
         //vector found 
         if(vector_array[i].name == name){
             index = i; 
@@ -96,7 +96,7 @@ int find_vect_index(char name){
 
 void find_vect(char name){
     int index = -1; 
-    for(int i = 0; i< capacity; i++){ 
+    for(int i = 0; i< add_index; i++){ 
         //vector found 
         if(vector_array[i].name == name){
             index = i; 
@@ -110,17 +110,20 @@ void find_vect(char name){
     }else{
         printf("Error: Vector %c does not exist.\n", name); 
     }
-
+ 
 }
 void clear_array(){
-    for(int i = 0; i<capacity; i++){
+    /*for(int i = 0; i<capacity; i++){
         vector_array[i].name = '\0'; 
         vector_array[i].x = 0; 
         vector_array[i].y = 0;
         vector_array[i].z = 0;
-    }
+    }*/
+    free(vector_array); 
     add_index = 0; 
-       
+    capacity = 10; 
+    vector_array = calloc(capacity, sizeof(vect)); 
+    
 }
 void print_help(void) {
     printf("MiniMat - Vector Calculator\n");
