@@ -1,5 +1,5 @@
 # MiniMat - Vector Calculator
- Supports 3D vectors (maximum 10).
+ Supports 3D vectors
 
  Commands: <br>
         quit            Exit program <br>
