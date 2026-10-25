@@ -171,10 +171,14 @@ void load_file(char *file_name){
             char *token_two = strtok(NULL, " ,"); 
             char *token_three = strtok(NULL, " ,"); 
             char *token_four = strtok(NULL, " ,"); 
-            vect vector = {.name = token_one[0], 
+            if(token_one != NULL && token_two != NULL && token_three != NULL && token_four != NULL){
+                vect vector = {.name = token_one[0], 
                 .x = atof(token_two), .y = atof(token_three), 
                 .z = atof(token_four)}; 
-            add_vect(vector); 
+                add_vect(vector); 
+            }else{
+                printf("One or more components missing\n");  
+            }
         }
         fclose(file);
     } 
@@ -183,7 +187,7 @@ void load_file(char *file_name){
 void save_file(char *file_name){
     FILE *file = fopen(file_name, "w"); 
     if(file == NULL){
-        printf("File doesn't exist\n"); 
+        printf("fopen failed\n"); 
     }else{
         for(int i = 0; i<add_index; i++){
             fprintf(file, "%c,%.2f,%.2f,%.2f\n", vector_array[i].name, 
