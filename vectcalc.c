@@ -12,9 +12,8 @@
 #include <stdbool.h>
 #include <ctype.h>
 int main(int argc, char* argv[]){ 
-    init_array(); 
 
-    char user_input[20]; 
+    char user_input[150]; 
     char *token_one; 
     char *token_two; 
     char *token_three; 
@@ -27,7 +26,7 @@ int main(int argc, char* argv[]){
             print_help(); 
         }
     }else{
-         
+        init_array(); 
         while(1){
             printf("minimat> ");  
         
@@ -62,6 +61,15 @@ int main(int argc, char* argv[]){
                 clear_array(); 
             }else if(token_one != NULL && strcmp(token_one, "list") == 0){
                 list(); //lists the vectors in the array
+            }else if(token_one != NULL && strcmp(token_one, "load") == 0){
+                //need to check for incorrect formatted csv
+                if(token_two != NULL){
+                    load_file(token_two);
+                } 
+            }else if(token_one != NULL && strcmp(token_one, "save") == 0){
+                if(token_two != NULL){
+                    save_file(token_two);
+                }
             }else if(token_two != NULL && strcmp(token_two, "=") == 0){
                 //vector addition
                 if(token_four != NULL && strcmp(token_four, "+") == 0){

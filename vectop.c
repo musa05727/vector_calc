@@ -16,6 +16,9 @@ int capacity = 10;
 vect* vector_array; 
 void init_array(){
     vector_array = malloc(capacity * sizeof(vect));  
+    if(vector_array == NULL){
+        printf("Memory allocation failed\n"); 
+    }
 }
 
 vect add(vect a, vect b, char name){
@@ -71,11 +74,12 @@ void add_vect(vect vector){
         vect *temp = realloc(vector_array, capacity * sizeof(vect)); 
         if(temp == NULL){
             printf("Memory reallocation failed.\n"); 
-            free(vector_array); 
+            capacity -= 10; 
         }else{
             vector_array = temp;
-        }
-        vector_array[add_index] = vector;  
+            vector_array[add_index] = vector;  
+            add_index++; 
+        }  
     }
 
  
@@ -113,12 +117,6 @@ void find_vect(char name){
  
 }
 void clear_array(){
-    /*for(int i = 0; i<capacity; i++){
-        vector_array[i].name = '\0'; 
-        vector_array[i].x = 0; 
-        vector_array[i].y = 0;
-        vector_array[i].z = 0;
-    }*/
     free(vector_array); 
     add_index = 0; 
     capacity = 10; 
@@ -150,7 +148,7 @@ void print_help(void) {
 }
 
 void list(){
-    for(int i = 0; i<capacity; i++){
+    for(int i = 0; i<add_index; i++){
         if(vector_array[i].name != '\0'){
             printf("%c = %.2f %.2f %.2f\n", vector_array[i].name, 
             vector_array[i].x, vector_array[i].y,
@@ -162,5 +160,35 @@ void list(){
 }
 
 
+void load_file(char *file_name){
+    FILE *file = fopen(file_name, "r"); 
+    if(file == NULL){
+        printf("File doesn't exist\n"); 
+    }else{
+        char line[50]; 
+        while(fgets(line, sizeof(line), file) != NULL){
+            char *token_one = strtok(line, " ,");
+            char *token_two = strtok(NULL, " ,"); 
+            char *token_three = strtok(NULL, " ,"); 
+            char *token_four = strtok(NULL, " ,"); 
+            vect vector = {.name = token_one[0], 
+                .x = atof(token_two), .y = atof(token_three), 
+                .z = atof(token_four)}; 
+            add_vect(vector); 
+        }
+        fclose(file);
+    } 
+}
 
-
+void save_file(char *file_name){
+    FILE *file = fopen(file_name, "w"); 
+    if(file == NULL){
+        printf("File doesn't exist\n"); 
+    }else{
+        for(int i = 0; i<add_index; i++){
+            fprintf(file, "%c,%.2f,%.2f,%.2f\n", vector_array[i].name, 
+                vector_array[i].x, vector_array[i].y, vector_array[i].z); 
+        }
+        fclose(file); 
+    }
+}
