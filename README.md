@@ -5,7 +5,8 @@
         quit            Exit program <br>
         clear           Delete all vectors <br>
         list            Display stored vectors <br>
-
+        load            Load vectors from a file <br>
+        save            Save vectors to a file <br>
  Operations: <br> 
         a = 1 2 3       Create/update vector <br>
         a               Display vector <br>
