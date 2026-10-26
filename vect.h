@@ -28,6 +28,7 @@ void find_vect(char name);
 void clear_array(); 
 void list(); 
 void print_help(void); 
-void init_array();
+vect* init_array();
 void load_file(char *file_name); 
 void save_file(char *file_name); 
+ 

@@ -11,6 +11,7 @@
 #include "vect.h"
 #include <stdbool.h>
 #include <ctype.h>
+vect* vector_array; 
 int main(int argc, char* argv[]){ 
 
     char user_input[150]; 
@@ -26,7 +27,11 @@ int main(int argc, char* argv[]){
             print_help(); 
         }
     }else{
-        init_array(); 
+        vector_array = init_array(); 
+        if(vector_array == NULL){
+            printf("Memory allocation failed\n"); 
+            return 1; 
+        }
         while(1){
             printf("minimat> ");  
         

@@ -13,12 +13,11 @@
 
 static int add_index = 0; 
 int capacity = 10; 
-vect* vector_array; 
-void init_array(){
-    vector_array = malloc(capacity * sizeof(vect));  
-    if(vector_array == NULL){
-        printf("Memory allocation failed\n"); 
-    }
+//vect* vector_array;  
+vect* init_array(){
+    vect *ptr = malloc(capacity * sizeof(vect));  
+    return ptr; 
+
 }
 
 vect add(vect a, vect b, char name){
@@ -167,10 +166,10 @@ void load_file(char *file_name){
     }else{
         char line[50]; 
         while(fgets(line, sizeof(line), file) != NULL){
-            char *token_one = strtok(line, " ,");
-            char *token_two = strtok(NULL, " ,"); 
-            char *token_three = strtok(NULL, " ,"); 
-            char *token_four = strtok(NULL, " ,"); 
+            char *token_one = strtok(line, ",");
+            char *token_two = strtok(NULL, ","); 
+            char *token_three = strtok(NULL, ","); 
+            char *token_four = strtok(NULL, ","); 
             if(token_one != NULL && token_two != NULL && token_three != NULL && token_four != NULL){
                 vect vector = {.name = token_one[0], 
                 .x = atof(token_two), .y = atof(token_three), 
