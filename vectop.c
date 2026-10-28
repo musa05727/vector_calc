@@ -38,7 +38,7 @@ vect sub(vect a, vect b, char name){
     return_vector.z = a.z - b.z; 
 
     return return_vector; 
-}
+} 
 
 vect smult(vect a, double scalar, char name){
     vect return_vector; 
