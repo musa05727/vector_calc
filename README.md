@@ -2,7 +2,7 @@
 MiniMat is a 3D vector calculator that allows users to create, store, and manipulate vectors. It supports vector addition, subtraction, scalar multiplication, and loading and saving vectors to files.
 # How to Compile and Run the Program 
 Run 'make' to compile the program.<br>
-./vectcalc to run start the program.
+./vectcalc to start the program.
 
 # Supported Commands and Operations 
  Command-line:<br> 
